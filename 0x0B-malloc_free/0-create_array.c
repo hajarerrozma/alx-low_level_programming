@@ -2,43 +2,45 @@
 #include <stdlib.h>
 
 char *create_array(unsigned int size, char c) {
-    // Check if the size is zero and return NULL in that case
     if (size == 0) {
+        // If size is 0, return NULL, as there's no array to create.
         return NULL;
     }
 
-    // Allocate memory for the character array
-    char *array = (char *)malloc(size * sizeof(char));
+    // Allocate memory for the character array using malloc.
+    char *charArray = (char *)malloc(size * sizeof(char));
 
-    // Check if memory allocation was successful
-    if (array == NULL) {
-        return NULL; // Return NULL if memory allocation failed
+    if (charArray == NULL) {
+        // If malloc fails to allocate memory, return NULL to indicate failure.
+        return NULL;
     }
 
-    // Initialize the array with the specified character
+    // Initialize the array with the specified character 'c'.
     for (unsigned int i = 0; i < size; i++) {
-        array[i] = c;
+        charArray[i] = c;
     }
 
-    return array; // Return a pointer to the initialized array
+    return charArray;
 }
 
 int main() {
-    unsigned int size = 5;
-    char initialChar = 'A';
+    unsigned int size = 10;  // Change the size as needed.
+    char character = 'A';   // Change the character as needed.
 
-    char *result = create_array(size, initialChar);
+    // Create an array of characters with the specified size and character.
+    char *result = create_array(size, character);
 
-    if (result == NULL) {
-        printf("Array creation failed.\n");
-    } else {
-        printf("Array created successfully: ");
+    if (result != NULL) {
+        // Print the created array to verify the initialization.
         for (unsigned int i = 0; i < size; i++) {
             printf("%c ", result[i]);
         }
         printf("\n");
 
-        free(result); // Don't forget to free the allocated memory when you're done.
+        // Don't forget to free the allocated memory when done using the array.
+        free(result);
+    } else {
+        printf("Failed to create the array.\n");
     }
 
     return 0;
