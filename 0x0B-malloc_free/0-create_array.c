@@ -1,19 +1,46 @@
 #include "main.h"
-
-
-char *create_array(unsigned int size, char c);
+		
+#include <stdlib.h>
+		
+/**
+		
+ * create_array - create array of size size and assign char c
+		
+ * @size: size of array
+		
+ * @c: char to assign
+		
+ * Description: creat array of size size and assign char c
+		
+ * Return: pointer to array, NULL if fail
+		
+ *
+		
+ */
+		
+char *create_array(unsigned int size, char c)
+		
 {
-	char *buffer;
-	unsigned int size;
+		
+	char *str;
+		
+	unsigned int i;
+		
 
-	size = 72;
-	buffer = create_array(size, 'S');
-	if (buffer == NULL)
-	{
-		printf("failed to allocate memory\n");
-		return (1);
-	}
-	simple_print_buffer(buffer, size);
-	free(buffer);
-	return (0);
+		
+	str = malloc(sizeof(char) * size);
+		
+	if (size == 0 || str == NULL)
+		
+		return (NULL);
+		
+
+		
+	for (i = 0; i < size; i++)
+		
+		str[i] = c;
+		
+	return (str);
+		
 }
+
